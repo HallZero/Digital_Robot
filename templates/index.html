@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robô Digital</title>
+</head>
+<body>
+    Bem vindo à interface do robô digital!
+    <p>Posição atual do robô:</p>
+    <form action="/position" method="post">
+        <label for="x">X:</label>
+        <input type="number" name="x" id="x" value="{{x}}">
+        <label for="y">Y:</label>
+        <input type="number" name="y" id="y" value="{{y}}">
+        <label for="z">Z:</label>
+        <input type="number" name="z" id="z" value="{{z}}">
+        <input type="submit" value="Atualizar posição">
+    </form>
+</body>
+</html>
