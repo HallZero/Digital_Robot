@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1ddro2mm2pq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w71va"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vc4wm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o6map"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r0imy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h70c8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_88nka"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxav2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Table" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 0.15, 0, 0, 0, 2.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_w71va")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.955175, 0.296041, 0, -0.296041, 0.955175, 0, 1.2889, 2.81544)
+
+[node name="Robot" type="Node3D" parent="."]
+
+[node name="RobotBase" type="MeshInstance3D" parent="Robot"]
+transform = Transform3D(0.881, 0, 0, 0, 0.5, 0, 0, 0, 0.864, 0, 0.334917, 0)
+mesh = SubResource("BoxMesh_vc4wm")
+skeleton = NodePath("../..")
+
+[node name="JointBase" type="MeshInstance3D" parent="Robot/RobotBase"]
+transform = Transform3D(-0.654938, 0, 9.73504e-08, 0, 0.5, 0, -1.00839e-07, 0, -0.657407, 0, 0.330166, 0)
+mesh = SubResource("CylinderMesh_o6map")
+skeleton = NodePath("../..")
+
+[node name="JointForearm" type="MeshInstance3D" parent="Robot/RobotBase/JointBase"]
+transform = Transform3D(0.5, -8.74228e-08, 3.82137e-15, 0, -2.18557e-08, -0.5, 8.74228e-08, 0.5, -2.18557e-08, 0, 1.15, 0)
+mesh = SubResource("CylinderMesh_r0imy")
+
+[node name="Forearm" type="MeshInstance3D" parent="Robot/RobotBase/JointBase/JointForearm"]
+transform = Transform3D(1, 0, -5.42101e-20, -2.84217e-14, 1, -2.55795e-13, 0, 3.90799e-14, 5.5691, 3.38813e-21, -5.68434e-14, -2.5)
+mesh = SubResource("BoxMesh_h70c8")
+
+[node name="JointArm" type="MeshInstance3D" parent="Robot/RobotBase/JointBase/JointForearm/Forearm"]
+transform = Transform3D(1.1923, 8.52651e-14, -1.19209e-07, -1.98952e-13, 0.500965, -1.42109e-14, 7.45058e-09, 4.44089e-16, 0.500965, 4.76837e-07, -1.57978e-07, -0.64896)
+mesh = SubResource("CylinderMesh_88nka")
+
+[node name="Arm" type="MeshInstance3D" parent="Robot/RobotBase/JointBase/JointForearm/Forearm/JointArm"]
+transform = Transform3D(2.71952, 1.98952e-13, 3.77487e-16, 1.36424e-12, 2.1146, 0, -6.77626e-21, 7.10543e-15, 0.525464, -1.25467, 9.80144e-07, 0)
+mesh = SubResource("BoxMesh_cxav2")
+
+[node name="JointHand" type="MeshInstance3D" parent="Robot/RobotBase/JointBase/JointForearm/Forearm/JointArm/Arm"]
+transform = Transform3D(0.367653, 7.45058e-09, 0.0339107, 0.0065522, 2.06703e-08, -1.90278, -1.51801e-08, 0.472902, 8.28727e-08, -0.575166, 5.77854e-07, 0)
+mesh = SubResource("CylinderMesh_88nka")
+skeleton = NodePath("../../..")
+
+[node name="Hand" type="MeshInstance3D" parent="Robot/RobotBase/JointBase/JointForearm/Forearm/JointArm/Arm/JointHand"]
+transform = Transform3D(1.61856, 2.01235e-13, -2.84217e-14, 8.11945e-13, 2.1146, 1.59872e-14, 0, 8.88178e-15, 0.525464, -0.617153, 0, 1.23756e-07)
+mesh = SubResource("BoxMesh_cxav2")
