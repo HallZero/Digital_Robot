@@ -16,7 +16,7 @@ robot = Position()
 
 @app.route('/')
 def index():
-    return render_template('index.html', x=robot.x, y=robot.y, z=robot.z, a=robot.a, b=robot.b, c=robot.c)
+    return render_template('index.html', x=robot.x, y=robot.y, z=robot.z, a=robot.a, b=robot.b, c=robot.c, r = robot.r)
 
 @app.route('/test')
 def test():
@@ -26,14 +26,14 @@ def test():
 def position():
     if request.method == 'POST':
         robot.new_position_axes(request.form['x'], request.form['y'], request.form['z'])
-        robot.new_position_angles(request.form['a'], request.form['b'], request.form['c'])
+        robot.new_position_angles(request.form['a'], request.form['b'], request.form['c'], request.form['r'])
         session.add(robot)
         session.commit()
         return redirect(url_for('index'))
     
 @app.route('/axes')
 def axes():
-    return jsonify({'x': robot.x, 'y': robot.y, 'z': robot.z, 'a': robot.a, 'b': robot.b, 'c': robot.c})
+    return jsonify({'x': robot.x, 'y': robot.y, 'z': robot.z, 'a': robot.a, 'b': robot.b, 'c': robot.c, 'r': robot.r})
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port=3000, debug=True)

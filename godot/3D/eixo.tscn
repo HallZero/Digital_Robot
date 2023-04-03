@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpqgbw17attso"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dkd76"]
+height = 0.980862
+
+[sub_resource type="BoxMesh" id="BoxMesh_45fgu"]
+
+[node name="Eixo" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_dkd76")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_45fgu")
